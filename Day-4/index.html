@@ -1,0 +1,225 @@
+### `index.html`
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Random Color Generator</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Random Color Generator</h1>
+
+        <div class="color-box">
+            <p id="colorCode">#3498db</p>
+        </div>
+
+        <button id="generateBtn">
+            Generate Color
+        </button>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+```
+
+### `style.css`
+
+```css
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: Arial, sans-serif;
+
+    background-color: #3498db;
+
+    transition: background-color 0.4s ease;
+}
+
+.container {
+    width: 90%;
+    max-width: 450px;
+
+    padding: 40px;
+
+    text-align: center;
+
+    background-color: white;
+
+    border-radius: 20px;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+    margin-bottom: 30px;
+
+    color: #333;
+
+    font-size: 30px;
+}
+
+.color-box {
+    padding: 25px;
+
+    margin-bottom: 25px;
+
+    background-color: #f4f4f4;
+
+    border-radius: 10px;
+}
+
+#colorCode {
+    font-size: 28px;
+
+    font-weight: bold;
+
+    color: #333;
+
+    letter-spacing: 2px;
+}
+
+button {
+    padding: 14px 25px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background-color: #333;
+
+    color: white;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #555;
+
+    transform: scale(1.05);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+```
+
+### `script.js`
+
+```javascript
+const generateBtn = document.getElementById("generateBtn");
+const colorCode = document.getElementById("colorCode");
+
+// Generate random hexadecimal color
+function generateRandomColor() {
+
+    const characters = "0123456789ABCDEF";
+
+    let color = "#";
+
+    for (let i = 0; i < 6; i++) {
+        const randomIndex = Math.floor(
+            Math.random() * 16
+        );
+
+        color += characters[randomIndex];
+    }
+
+    return color;
+}
+
+// Change background color
+function changeColor() {
+
+    const randomColor = generateRandomColor();
+
+    document.body.style.backgroundColor = randomColor;
+
+    colorCode.textContent = randomColor;
+}
+
+// Button click event
+generateBtn.addEventListener("click", changeColor);
+```
+
+### 🧠 How it works
+
+When you click **Generate Color**:
+
+```text
+Button click
+     ↓
+Generate random color
+     ↓
+Example: #A72FBC
+     ↓
+Change page background
+     ↓
+Display color code
+```
+
+The important JavaScript part is:
+
+```javascript
+const randomIndex = Math.floor(
+    Math.random() * 16
+);
+```
+
+This generates a random number from `0` to `15`, which is used to select a character from:
+
+```text
+0123456789ABCDEF
+```
+
+Six characters are selected to create a hexadecimal color such as:
+
+```text
+#FF5733
+#3498DB
+#A72FBC
+#12C4A8
+```
+
+### 🚀 Day Challenge
+
+Try adding these features yourself:
+
+* 📋 **Copy Color** button
+* 🎨 Show RGB value
+* 🌈 Generate RGB colors
+* 📜 Save previously generated colors
+* 🌙 Add dark/light mode
+* 🔄 Add a "Generate" keyboard shortcut
+
+### 📌 GitHub commit
+
+```bash
+git add .
+git commit -m "Day 8: Build Random Color Generator"
+git push
+```
